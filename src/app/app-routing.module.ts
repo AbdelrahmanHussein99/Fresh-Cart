@@ -9,6 +9,7 @@ const routes: Routes = [
       { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "home", loadComponent: () => import("./Components/home/home.component").then((m) => m.HomeComponent), title: 'Home' },
       { path: "products", loadComponent: () => import("./Components/products/products.component").then((m) => m.ProductsComponent), title: 'Products' },
+      { path: "productdetails/:id", loadComponent: () => import("./Components/details/details.component").then((m) => m.DetailsComponent), title: 'product Details' },
       { path: "brands", loadComponent: () => import("./Components/brands/brands.component").then((m) => m.BrandsComponent), title: 'Brands' },
       { path: "categories", loadComponent: () => import("./Components/categories/categories.component").then((m) => m.CategoriesComponent), title: 'Categories' },
       { path: "cart", loadComponent: () => import("./Components/cart/cart.component").then((m) => m.CartComponent), title: 'Cart' },

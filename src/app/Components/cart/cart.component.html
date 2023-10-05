@@ -1,1 +1,33 @@
-<p>cart works!</p>
+<section class=" mx-auto rounded shadow bg-main-light p-3 mb-3" *ngIf="cartDetails;else ety">
+  <div class=" d-flex align-items-center justify-content-between">
+    <div>
+      <h2 class="">My Cart</h2>
+      <p class="text-main">Total Price: <span>{{cartDetails.totalCartPrice |currency:"E£ "}}</span></p>
+    </div>
+    <button (click)="clearAll()" class="btn btn-danger">Clear All</button>
+  </div>
+
+  <div class="row border-bottom py-2" *ngFor="let item of cartDetails.products">
+    <div class="col-md-1">
+      <img class="w-100" [src]="item.product.imageCover" [alt]="item.product.title">
+    </div>
+    <div class="col-md-11 mt-2 d-flex align-items-center justify-content-between">
+      <div>
+        <h3 class="h6">{{item.product.title}}</h3>
+        <p class="text-main">Price: {{item.price|currency:"E£ "}}</p>
+        <button (click)="removeItem(item.product.id,btnRemove)" #btnRemove class="btn  btn-outline-danger m-0  "><i
+            class="fa-regular fa-trash-can  me-1"></i>Remove</button>
+      </div>
+      <div>
+        <button (click)="changeCount(item.count - 1,item.product.id,minsCount,pulsCount)" #minsCount
+          class=" btn border-success btn-sm me-2">-</button>
+        <span>{{item.count}}</span>
+        <button (click)="changeCount(item.count + 1,item.product.id,minsCount,pulsCount)" #pulsCount
+          class=" btn btn-success border-success btn-sm ms-2">+</button>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #ety>
+  <h2 class=" test-main text-center">Your Cart Is Empty...</h2>
+</ng-template>
