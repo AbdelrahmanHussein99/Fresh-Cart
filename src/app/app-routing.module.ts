@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivateFn } from '@angular/router';
+import { authGuard } from './core/guard/auth.guard';
 
 const routes: Routes = [
   {
-    path: "", loadComponent: () => import("./layouts/blank-layout/blank-layout.component").then((m) => m.BlankLayoutComponent),
+    path: "", loadComponent: () => import("./layouts/blank-layout/blank-layout.component").then((m) => m.BlankLayoutComponent),canActivate:[authGuard],
     children: [
       { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "home", loadComponent: () => import("./Components/home/home.component").then((m) => m.HomeComponent), title: 'Home' },

@@ -14,4 +14,7 @@ import { FooterComponent } from 'src/app/Components/footer/footer.component';
 })
 export class BlankLayoutComponent {
 
+  scrollup(): void{
+    scrollTo(0,0)
+  }
 }

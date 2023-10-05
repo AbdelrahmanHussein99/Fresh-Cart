@@ -1,1 +1,51 @@
-<p>home works!</p>
+<section class="py-2" *ngIf="categories.length > 0">
+  <div class="row gx-0">
+    <div class="col-md-9">
+      <owl-carousel-o [options]="mainSlideOptions">
+        <ng-template carouselSlide>
+          <img height="400px" src="./assets/imgs/main-slider-1.jpeg" alt="image slider 1">
+        </ng-template>
+        <ng-template carouselSlide>
+          <img height="400px" src="./assets/imgs/main-slider-2.jpeg" alt="image slider 2">
+        </ng-template>
+        <ng-template carouselSlide>
+          <img height="400px" src="./assets/imgs/main-slider-3.jpeg" alt="image slider 3">
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="col-md-3">
+      <img height="200px" class=" w-100" src="./assets/imgs/slide-1.jpeg" alt="image 1">
+      <img height="200px" class=" w-100" src="./assets/imgs/slide-2.jpeg" alt="image 2">
+    </div>
+  </div>
+</section>
+<section class="py-4" *ngIf="categories.length > 0">
+  <h2 class="mb-3">Popular Categories</h2>
+  <owl-carousel-o [options]="categoryOptions">
+
+    <ng-container *ngFor="let category of categories">
+      <ng-template carouselSlide>
+        <img height="300px" [src]="category.image" [alt]="category.name" [title]="category.name">
+        <h3 class="h6 text-main text-center">{{category.name}}</h3>
+      </ng-template>
+    </ng-container>
+
+  </owl-carousel-o>
+</section>
+<section *ngIf="products.length > 0" class="py-5">
+  <h2 class="mb-3">Popular products</h2>
+  <div class="row gy-4">
+    <div *ngFor="let product of products|slice:0:16 " class="col-sm-6 col-md-4 col-lg-3">
+      <div class="product h-100">
+        <img class="w-100" [src]="product.imageCover" [alt]="product.title" [title]="product.title">
+        <h3 class="h6">{{product.title|cuttex:3}}</h3>
+        <h4 class="h6 text-main">{{product.category.name}}</h4>
+        <div class="d-flex justify-content-between align-items-between">
+          <span class=" small">{{product.price| currency:"E£ "}}</span>
+          <p class="mb-0"><i class="fa-solid fa-star rating-color"></i>&nbsp;<span
+              class=" text-muted">{{product.ratingsAverage}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
