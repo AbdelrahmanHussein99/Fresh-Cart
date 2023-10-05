@@ -1,0 +1,50 @@
+<section class="shadow my-3 p-4 rounded bg-main-light">
+  <h1 class="  text-center my-3">Register</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="handleForm()">
+    <div class="form-item">
+      <label class="my-2" for="name">Name:</label>
+      <input class="form-control" formControlName="name" type="text" id="name" />
+      <div *ngIf="registerForm.get('name')?.errors &&registerForm.get('name')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        Special characters and numbers not allowed and at least 3 characters
+      </div>
+    </div>
+    <div class="form-item">
+      <label class="my-2" for="email">Email:</label>
+      <input class="form-control" formControlName="email" type="email" id="email" />
+      <div *ngIf="registerForm.get('email')?.errors &&registerForm.get('email')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        Email not valid ex:abc@gmail.com
+      </div>
+    </div>
+    <div class="form-item">
+      <label class="my-2" for="password">Password:</label>
+      <input class="form-control " formControlName="password" type="password" id="password" />
+      <div *ngIf="registerForm.get('password')?.errors &&registerForm.get('password')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        Enter valid password Password must contain Minimum eight and maximum 14 characters, at least one uppercase
+        letter, one lowercase letter, one number and one special character,for example: 12345Aa@
+      </div>
+    </div>
+    <div class="form-item">
+      <label class="my-2" for="rePassword">RePassword:</label>
+      <input class="form-control" formControlName="rePassword" type="password" id="rePassword" />
+      <div *ngIf="registerForm.get('rePassword')?.errors &&registerForm.get('rePassword')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        repassword is not correct
+      </div>
+    </div>
+    <div class="form-item">
+      <label class="my-2" for="phone">Phone:</label>
+      <input class="form-control" formControlName="phone" type="tel" id="phone" />
+      <div *ngIf="registerForm.get('phone')?.errors &&registerForm.get('phone')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        Enter valid Phone Number ex:01100000000
+      </div>
+    </div>
+    <button [disabled]="registerForm.invalid" class="main-btn mt-2">Register
+      <span *ngIf="isloadin"><i class="fa-solid fa-spin fa-spinner"></i></span>
+    </button>
+  </form>
+  <p *ngIf="errMsg" class="alert alert-danger mt-2 text-center">{{errMsg}}</p>
+</section>

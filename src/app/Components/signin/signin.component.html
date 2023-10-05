@@ -1,0 +1,25 @@
+<section class="shadow my-3 p-4 rounded bg-main-light">
+  <h1 class="  text-center my-3">Register</h1>
+  <form [formGroup]="signinForm" (ngSubmit)="handleForm()">
+    <div class="form-item">
+      <label class="my-2" for="email">Email:</label>
+      <input class="form-control" formControlName="email" type="email" id="email" />
+      <div *ngIf="signinForm.get('email')?.errors &&signinForm.get('email')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        Email is not correct
+      </div>
+    </div>
+    <div class="form-item">
+      <label class="my-2" for="password">Password:</label>
+      <input class="form-control " formControlName="password" type="password" id="password" />
+      <div *ngIf="signinForm.get('password')?.errors &&signinForm.get('password')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        password is not correct
+      </div>
+    </div>
+    <button [disabled]="signinForm.invalid" class="main-btn mt-2">signin
+      <span *ngIf="isloadin"><i class="fa-solid fa-spin fa-spinner"></i></span>
+    </button>
+  </form>
+  <p *ngIf="errMsg" class="alert alert-danger mt-2 text-center">{{errMsg}}</p>
+</section>
