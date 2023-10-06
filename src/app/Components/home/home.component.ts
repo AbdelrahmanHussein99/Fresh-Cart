@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
       next: (res) => {
         this._ToastrService.success(res.message)
         this._Renderer2.removeAttribute(el, "disabled");
+        this._CartService.cartNumber.next(res.numOfCartItems)
       },
       error: (err) => {
         this._Renderer2.removeAttribute(el, "disabled");

@@ -1,11 +1,12 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from 'src/app/core/services/cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
@@ -27,6 +28,7 @@ export class CartComponent implements OnInit {
       next: (res) => {
         this._Renderer2.removeAttribute(el, "disabled");
         this.cartDetails = res.data;
+        this._CartService.cartNumber.next(res.numOfCartItems)
         console.log(res);
       },
       error: (err) => {
@@ -58,6 +60,7 @@ export class CartComponent implements OnInit {
         console.log(res);
         if (res.message == "success") {
           this.cartDetails = null;
+          this._CartService.cartNumber.next(0)
         }
       },
       error: (err) => {

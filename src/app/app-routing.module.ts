@@ -13,6 +13,7 @@ const routes: Routes = [
       { path: "brands", loadComponent: () => import("./Components/brands/brands.component").then((m) => m.BrandsComponent), title: 'Brands' },
       { path: "categories", loadComponent: () => import("./Components/categories/categories.component").then((m) => m.CategoriesComponent), title: 'Categories' },
       { path: "cart", loadComponent: () => import("./Components/cart/cart.component").then((m) => m.CartComponent), title: 'Cart' },
+      { path: "payment/:id", loadComponent: () => import("./Components/payment/payment.component").then((m) => m.PaymentComponent), title: 'Payment' },
       { path: "wishlist", loadComponent: () => import("./Components/wishlist/wishlist.component").then((m) => m.WishlistComponent), title: 'Wishlist' },
     ]
   },

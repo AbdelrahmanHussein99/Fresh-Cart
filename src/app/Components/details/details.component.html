@@ -1,4 +1,4 @@
-<section class="p-3 shadow bg-main-light rounded" *ngIf="productDetailes">
+<section class="p-3 m-3 shadow bg-main-light rounded" *ngIf="productDetailes">
   <div class="row align-items-center g-4">
     <div class="col-md-4">
       <owl-carousel-o [options]="customOptions">
@@ -19,7 +19,8 @@
           <p class="mb-0"><i class="fa-solid fa-star rating-color"></i>&nbsp;<span
               class=" text-muted">{{productDetailes.ratingsAverage}}</span></p>
         </div>
-        <button class=" py-2 main-btn w-100">Add To Cart</button>
+        <button (click)="addProduct(productDetailes._id ,btnAdd)" #btnAdd class=" py-2 main-btn w-100">Add To
+          Cart</button>
       </div>
     </div>
   </div>
