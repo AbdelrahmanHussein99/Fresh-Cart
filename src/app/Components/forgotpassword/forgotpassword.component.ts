@@ -41,7 +41,6 @@ export class ForgotpasswordComponent {
         this.statusMsg = res.message;
         this.step1 = false;
         this.step2 = true;
-        console.log(res);
       },
       error: (err) => {
         this.isloadin = false;
@@ -58,7 +57,6 @@ export class ForgotpasswordComponent {
         this.statusMsg = res.status;
         this.step2 = false;
         this.step3 = true;
-        console.log(res);
       },
       error: (err) => {
         this.isloadin = false;

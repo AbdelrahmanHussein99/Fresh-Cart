@@ -22,8 +22,6 @@ constructor(private _Renderer2:Renderer2,private _WishlistService:WishlistServic
   this._WishlistService.getWishlist().subscribe({
     next: (res) => {
       this.products = res.data;
-      console.log(res);
-      
     }
   })
 }
@@ -45,8 +43,6 @@ constructor(private _Renderer2:Renderer2,private _WishlistService:WishlistServic
     this._WishlistService.addToWishlist(ID).subscribe({
       next: (res) => {
         this._ToastrService.success(res.message)
-        console.log(res);
-        
       }
     })
   }

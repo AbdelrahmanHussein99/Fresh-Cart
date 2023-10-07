@@ -34,11 +34,7 @@ ngOnInit(): void {
         if (res.status == 'success') {
           window.open(res.session.url,"_self")
         }
-        console.log(res);
-        
       }
     })
-    console.log(this.orderFrom.value);
-    
   }
 }

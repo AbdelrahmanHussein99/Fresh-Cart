@@ -29,7 +29,6 @@ export class NavBlankComponent implements OnInit {
     this._CartService.cartNumber.subscribe({
       next: (number) => {
         this.cartNumberNav=number
-        console.log(number);
       }
     })
     this._CartService.getUserCart().subscribe({

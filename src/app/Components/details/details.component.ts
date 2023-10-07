@@ -22,15 +22,11 @@ export class DetailsComponent implements OnInit {
     this._ActivatedRoute.paramMap.subscribe({
       next: (params) => {
         this.productID = params.get('id')
-        console.log(this.productID);
-        
       }
     })
     this._ProductService.getProductDetails(this.productID).subscribe({
       next: (res) => {
         this.productDetailes = res.data;
-        console.log(res.data);
-        
       }
     })
   }

@@ -17,7 +17,6 @@ export class CartComponent implements OnInit {
     this._CartService.getUserCart().subscribe({
       next: (res) => {
         this.cartDetails = res.data;
-        console.log(res.data);
         
       }
     })
@@ -29,7 +28,6 @@ export class CartComponent implements OnInit {
         this._Renderer2.removeAttribute(el, "disabled");
         this.cartDetails = res.data;
         this._CartService.cartNumber.next(res.numOfCartItems)
-        console.log(res);
       },
       error: (err) => {
         this._Renderer2.removeAttribute(el, "disabled");
@@ -45,7 +43,6 @@ export class CartComponent implements OnInit {
         this._Renderer2.removeAttribute(el1, "disabled");
         this._Renderer2.removeAttribute(el2, "disabled");
         this.cartDetails = res.data;
-        console.log(res);
       },
       error: (err) => {
         this._Renderer2.removeAttribute(el1, "disabled");
@@ -57,7 +54,6 @@ export class CartComponent implements OnInit {
   clearAll(): void{
     this._CartService.clearCart().subscribe({
       next: (res) => {
-        console.log(res);
         if (res.message == "success") {
           this.cartDetails = null;
           this._CartService.cartNumber.next(0)

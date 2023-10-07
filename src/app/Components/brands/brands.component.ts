@@ -23,8 +23,6 @@ export class BrandsComponent implements OnInit {
         this.pageSize = res.metadata.limit;
         this.currentPage = res.metadata.currentPage;
         this.total = res.results;
-        console.log(res);
-        
       },
     })
   }
@@ -38,7 +36,5 @@ export class BrandsComponent implements OnInit {
         this.total = res.results;
       }
     });
-    console.log(e);
-    
   }
 }

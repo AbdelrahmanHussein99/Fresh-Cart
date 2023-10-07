@@ -30,14 +30,12 @@ export class HomeComponent implements OnInit {
     this._ProductService.getProducts().subscribe({
       next: (res) => {
         this.products = res.data
-        console.log("p",res.data);
         
       }
     });
     this._ProductService.getGategories().subscribe({
       next: (res) => {
         this.categories = res.data;
-        console.log("c",res.data);
       }
     })
       this._WishlistService.getWishlist().subscribe({
@@ -66,7 +64,6 @@ export class HomeComponent implements OnInit {
         this._WishlistService.wishlistNumber.next(res.data.length)
         this._ToastrService.success(res.message)
         this.wishlistDetails=res.data
-        console.log(res);
         
       }
     })
@@ -77,7 +74,6 @@ export class HomeComponent implements OnInit {
         this._WishlistService.wishlistNumber.next(res.data.length)
         this.wishlistDetails=res.data
         this._ToastrService.success(res.message)
-        console.log(res);
       }
     })
   }

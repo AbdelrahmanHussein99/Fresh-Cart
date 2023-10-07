@@ -33,7 +33,6 @@ export class ProductsComponent implements OnInit {
             this.pageSize = res.metadata.limit;
             this.currentPage = res.metadata.currentPage;
             this.total = res.results;
-        console.log("p",res.data);
         
       }
         });
@@ -65,11 +64,8 @@ export class ProductsComponent implements OnInit {
         this.pageSize = res.metadata.limit;
         this.currentPage = res.metadata.currentPage;
         this.total = res.results;
-        console.log("p",res.data);
       }
     });
-    console.log(e);
-    
   }
     addProductWishlist(ID:string): void{
     this._WishlistService.addToWishlist(ID).subscribe({
@@ -77,7 +73,7 @@ export class ProductsComponent implements OnInit {
         this._WishlistService.wishlistNumber.next(res.data.length)
         this._ToastrService.success(res.message)
         this.wishlistDetails=res.data
-        console.log(res);
+
         
       }
     })
@@ -88,7 +84,7 @@ export class ProductsComponent implements OnInit {
         this._WishlistService.wishlistNumber.next(res.data.length)
         this.wishlistDetails=res.data
         this._ToastrService.success(res.message)
-        console.log(res);
+
       }
     })
   }
