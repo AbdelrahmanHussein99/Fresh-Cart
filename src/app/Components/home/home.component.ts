@@ -8,20 +8,24 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { SearchPipe } from 'src/app/core/pipe/search.pipe';
+import { FormsModule } from '@angular/forms';
+import { WishlistService } from 'src/app/core/services/wishlist.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,CuttexPipe,CarouselModule,RouterLink],
+  imports: [CommonModule,CuttexPipe,CarouselModule,RouterLink,SearchPipe,FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  term: string = '';
   products: Product[] = [];
   categories: Category[] = [];
+  wishlistDetails:string[]=[]
 
-  constructor(private _Renderer2:Renderer2,private _ProductService:ProductService,private _CartService:CartService,private _ToastrService:ToastrService) { }
+  constructor(private _Renderer2:Renderer2,private _WishlistService:WishlistService,private _ProductService:ProductService,private _CartService:CartService,private _ToastrService:ToastrService) { }
   ngOnInit(): void {
     this._ProductService.getProducts().subscribe({
       next: (res) => {
@@ -36,6 +40,12 @@ export class HomeComponent implements OnInit {
         console.log("c",res.data);
       }
     })
+      this._WishlistService.getWishlist().subscribe({
+        next: (res) => {
+          const newDetails = res.data.map((item:any)=>item._id)
+      this.wishlistDetails=newDetails
+    }
+  })
   }
   addProduct(ID: string, el: HTMLButtonElement): void {
     this._Renderer2.setAttribute(el,"disabled","true")
@@ -47,6 +57,27 @@ export class HomeComponent implements OnInit {
       },
       error: (err) => {
         this._Renderer2.removeAttribute(el, "disabled");
+      }
+    })
+  }
+  addProductWishlist(ID:string): void{
+    this._WishlistService.addToWishlist(ID).subscribe({
+      next: (res) => {
+        this._WishlistService.wishlistNumber.next(res.data.length)
+        this._ToastrService.success(res.message)
+        this.wishlistDetails=res.data
+        console.log(res);
+        
+      }
+    })
+  }
+    removeWish(ID: string): void{
+    this._WishlistService.removeWishlist(ID).subscribe({
+      next: (res) => {
+        this._WishlistService.wishlistNumber.next(res.data.length)
+        this.wishlistDetails=res.data
+        this._ToastrService.success(res.message)
+        console.log(res);
       }
     })
   }

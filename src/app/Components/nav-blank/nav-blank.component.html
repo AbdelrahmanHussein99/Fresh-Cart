@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg bg-main-light fixed-top">
+<nav class="navbar navbar-expand-lg bg-main-light fixed-top" (scroll)="onScroll()"
+  [ngClass]="navbarScroll?'py-1':'py-3'">
   <div class="container">
     <a class="navbar-brand" routerLink=""><img [src]="logo" alt="fresh cart logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -14,18 +15,34 @@
           <a class="nav-link" routerLinkActive="active-link" routerLink="products">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active-link" routerLink="brands">Categories</a>
+          <a class="nav-link" routerLinkActive="active-link" routerLink="categories">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active-link" routerLink="wishlist">Wishlist</a>
+          <a class="nav-link" routerLinkActive="active-link" routerLink="brands">Brands</a>
         </li>
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0 gap-2 ">
         <li class="nav-item">
-          <a class="nav-link position-relative" routerLink="cart">
+          <a class="nav-link position-relative" routerLink="/cart">
             <i class="fa-solid fa-cart-shopping cart"></i>
             <span class=" position-absolute top-0 end-0  badge bg-main">{{cartNumberNav}}</span>
           </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link position-relative" routerLink="/wishlist">
+            <i class="fa-solid fa-heart cart"></i>
+            <span class=" position-absolute top-0 end-0  badge bg-main">{{wishListNumberNav}}</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user fa-xl text-main"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li routerLink="/forgotpassword" routerLinkActive="active-link" class="cursor-pointer"><a
+                class="dropdown-item">Forgot Password</a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
           <span class=" nav-link" (click)="signOut()" role="button">LogOut</span>

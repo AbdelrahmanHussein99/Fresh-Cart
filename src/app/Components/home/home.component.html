@@ -34,9 +34,20 @@
 </section>
 <section *ngIf="products.length > 0" class="py-5">
   <h2 class="mb-3">Popular products</h2>
+  <input [(ngModel)]="term" type="text" placeholder="Search..." class="form-control form-control-sm my-3 w-50 mx-auto ">
   <div class="row gy-4">
-    <div *ngFor="let product of products|slice:0:16 " class="col-sm-6 col-md-4 col-lg-3">
-      <div class="product h-100 ">
+    <div *ngFor="let product of products| search:term |slice:0:16 " class="col-sm-6 col-md-4 col-lg-3">
+      <div class="product h-100 position-relative bg-white ">
+        <div class="box">
+          <span *ngIf="!wishlistDetails.includes(product._id)" (click)="addProductWishlist(product._id)"
+            class=" d-flex justify-content-center align-items-center heart">
+            <i class="fa-regular fa-heart "></i>
+          </span>
+          <span *ngIf="wishlistDetails.includes(product._id)" (click)="removeWish(product._id)"
+            class=" d-flex justify-content-center align-items-center heart">
+            <i class="fa-solid fa-heart text-danger"></i>
+          </span>
+        </div>
         <header class="cursor-pointer" [routerLink]="['/productdetails',product._id]">
           <img class="w-100" [src]="product.imageCover" [alt]="product.title" [title]="product.title">
           <h3 class="h6 mt-2">{{product.title|cuttex:3}}</h3>

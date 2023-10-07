@@ -37,7 +37,7 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this._AuthService.register(userData).subscribe({
         next: (res) => {
-          if (res.message) {
+          if (res.message == 'success') {
             this.isloadin = false;
             this._Router.navigate(['/signin']);
           }

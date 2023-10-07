@@ -17,9 +17,12 @@
         password is not correct
       </div>
     </div>
-    <button [disabled]="signinForm.invalid" class="main-btn mt-2">signin
-      <span *ngIf="isloadin"><i class="fa-solid fa-spin fa-spinner"></i></span>
-    </button>
+    <div class=" d-flex justify-content-between align-items-center">
+      <button [disabled]="signinForm.invalid" class="main-btn mt-2">signin
+        <span *ngIf="isloadin"><i class="fa-solid fa-spin fa-spinner"></i></span>
+      </button>
+      <a class=" link-primary" routerLink="/forgotpass">Forget Password</a>
+    </div>
   </form>
   <p *ngIf="errMsg" class="alert alert-danger mt-2 text-center">{{errMsg}}</p>
 </section>

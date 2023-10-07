@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-spin.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.scss",

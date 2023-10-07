@@ -1,1 +1,20 @@
-<p>brands works!</p>
+<section *ngIf="brands.length > 0" class="py-5 my-4">
+  <h2 class="mb-4 text-center fw-bolder">Brands</h2>
+  <div class="row gy-4 justify-content-center">
+    <div
+      *ngFor="let brand of brands |paginate: { id: 'productPaginate',itemsPerPage: pageSize,currentPage: currentPage,totalItems: total }"
+      class="col-sm-6 col-md-4 col-lg-3">
+      <div class="cursor-pointer border border-success bg-white rounded p-2 shadow">
+        <img class="w-100" height="300px" [src]="brand.image" [alt]="brand.name" [title]="brand.name">
+        <h3 class=" fw-bold text-main text-center mt-2">{{brand.name}}</h3>
+      </div>
+    </div>
+  </div>
+  <div class=" d-flex justify-content-center align-items-center mt-4">
+    <pagination-controls id="productPaginate" (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)" [maxSize]="9" [directionLinks]="true" [autoHide]="true"
+      [responsive]="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+  </div>
+</section>

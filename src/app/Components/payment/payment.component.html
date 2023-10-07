@@ -1,5 +1,30 @@
-<section>
+<section class=" mx-auto rounded shadow p-3 bg-main-light my-3">
+  <h1>CheckOut</h1>
   <form [formGroup]="orderFrom" (ngSubmit)="handleForm()">
-
+    <div class="form-item">
+      <label for="details">details</label>
+      <input class=" form-control" type="text" id="Details" formControlName="details">
+      <div *ngIf="orderFrom.get('details')?.errors &&orderFrom.get('details')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        Enter an Address.
+      </div>
+    </div>
+    <div class="form-item">
+      <label for="phone">Phone</label>
+      <input class=" form-control" type="tel" id="phone" formControlName="phone">
+      <div *ngIf="orderFrom.get('phone')?.errors &&orderFrom.get('phone')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        Enter valid Phone Number ex:01100000000
+      </div>
+    </div>
+    <div class="form-item">
+      <label for="city">city</label>
+      <input class=" form-control" type="text" id="City" formControlName="city">
+      <div *ngIf="orderFrom.get('city')?.errors &&orderFrom.get('city')?.touched"
+        class="alert alert-danger mt-2 text-center " role="alert">
+        Enter a City.
+      </div>
+    </div>
+    <button [disabled]="orderFrom.invalid" class=" mt-3 main-btn">CheckOut</button>
   </form>
 </section>

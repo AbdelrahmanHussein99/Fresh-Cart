@@ -1,0 +1,15 @@
+<section class=" py-3 mx-auto rounded bg-main-light shadow p-3 my-2">
+  <div class="row g-4">
+    <div class="col-md-3">
+      <img class=" w-100" [src]="CategoryDetails.image" [alt]="CategoryDetails.name" [title]="CategoryDetails.name">
+    </div>
+    <div class="col-md-9">
+      <h2 class="">{{CategoryDetails.name}}</h2>
+      <ul class=" list-unstyled d-flex flex-wrap justify-content-center  ">
+        <li *ngFor="let sub of subCategories" class=" bg-white rounded m-2 p-3 ">
+          {{sub.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

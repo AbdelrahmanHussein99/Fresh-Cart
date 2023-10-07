@@ -12,8 +12,11 @@ const routes: Routes = [
       { path: "productdetails/:id", loadComponent: () => import("./Components/details/details.component").then((m) => m.DetailsComponent), title: 'product Details' },
       { path: "brands", loadComponent: () => import("./Components/brands/brands.component").then((m) => m.BrandsComponent), title: 'Brands' },
       { path: "categories", loadComponent: () => import("./Components/categories/categories.component").then((m) => m.CategoriesComponent), title: 'Categories' },
+      { path: "categorydetails/:id", loadComponent: () => import("./Components/categorydetails/categorydetails.component").then((m) => m.CategorydetailsComponent), title: 'Category Details' },
       { path: "cart", loadComponent: () => import("./Components/cart/cart.component").then((m) => m.CartComponent), title: 'Cart' },
       { path: "payment/:id", loadComponent: () => import("./Components/payment/payment.component").then((m) => m.PaymentComponent), title: 'Payment' },
+      { path: "allorders", loadComponent: () => import("./Components/allorders/allorders.component").then((m) => m.AllordersComponent), title: 'All orders' },
+      { path: "forgotpassword", loadComponent: () => import("./Components/forgotpassword/forgotpassword.component").then((m) => m.ForgotpasswordComponent), title: 'Forgot Password' },
       { path: "wishlist", loadComponent: () => import("./Components/wishlist/wishlist.component").then((m) => m.WishlistComponent), title: 'Wishlist' },
     ]
   },
@@ -23,6 +26,7 @@ const routes: Routes = [
     { path: "", redirectTo: "signin", pathMatch: "full" },
     {path:'signin',loadComponent: () => import('./Components/signin/signin.component').then((m) => m.SigninComponent),title:'Signin'},
     {path:'signup',loadComponent: () => import('./Components/register/register.component').then((m) => m.RegisterComponent),title:'Signup'},
+    { path: "forgotpass", loadComponent: () => import("./Components/forgotpassword/forgotpassword.component").then((m) => m.ForgotpasswordComponent), title: 'Forgot Password' },
   ]
   },
   { path: "**", loadComponent: () => import("./Components/notfound/notfound.component").then((m) => m.NotfoundComponent), title: '404' },

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup,Validators,ReactiveFormsModule, FormControlOptions } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule,RouterLink],
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })

@@ -1,1 +1,42 @@
-<p>products works!</p>
+<section *ngIf="products.length > 0" class="py-5">
+  <h2 class="mb-3 text-center fw-bolder">Products</h2>
+  <input [(ngModel)]="term" type="text" placeholder="Search..." class="form-control form-control-sm my-5 w-50 mx-auto ">
+  <div class="row gy-4">
+    <div
+      *ngFor="let product of products| search:term |paginate: { id: 'productPaginate',itemsPerPage: pageSize,currentPage: currentPage,totalItems: total }"
+      class="col-sm-6 col-md-4 col-lg-3">
+      <div class="product h-100 position-relative bg-white">
+        <div class="box">
+          <span *ngIf="!wishlistDetails.includes(product._id)" (click)="addProductWishlist(product._id)"
+            class=" d-flex justify-content-center align-items-center heart">
+            <i class="fa-regular fa-heart "></i>
+          </span>
+          <span *ngIf="wishlistDetails.includes(product._id)" (click)="removeWish(product._id)"
+            class=" d-flex justify-content-center align-items-center heart">
+            <i class="fa-solid fa-heart text-danger"></i>
+          </span>
+        </div>
+        <header class="cursor-pointer" [routerLink]="['/productdetails',product._id]">
+          <img class="w-100" [src]="product.imageCover" [alt]="product.title" [title]="product.title">
+          <h3 class="h6 mt-2">{{product.title|cuttex:2}}</h3>
+          <h4 class="h6 text-main small">{{product.category.name}}</h4>
+          <div class="d-flex justify-content-between align-items-between">
+            <span class=" small">{{product.price| currency:"E£ "}}</span>
+            <p class="mb-0"><i class="fa-solid fa-star rating-color"></i>&nbsp;<span
+                class=" text-muted">{{product.ratingsAverage}}</span></p>
+          </div>
+        </header>
+        <footer>
+          <button (click)="addProduct(product._id ,btnAdd)" #btnAdd class=" py-2 main-btn w-100">Add To Cart</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <div class=" d-flex justify-content-center align-items-center mt-4">
+    <pagination-controls id="productPaginate" (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)" [maxSize]="9" [directionLinks]="true" [autoHide]="true"
+      [responsive]="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+  </div>
+</section>
